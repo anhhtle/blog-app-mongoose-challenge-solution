@@ -101,7 +101,7 @@ app.put('/posts/:id', (req, res) => {
 });
 
 
-app.delete('/:id', (req, res) => {
+app.delete('posts/:id', (req, res) => {
   BlogPosts
     .findByIdAndRemove(req.params.id)
     .exec()
