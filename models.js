@@ -10,6 +10,16 @@ const blogPostSchema = mongoose.Schema({
   created: {type: Date, default: Date.now}
 });
 
+const blogPostSchema2 = mongoose.Schema({
+  title: {type: String, required: true},
+  author: {
+    firstName: String,
+    lastName: String
+  },
+  content: {type: String},
+  //created: {type: Date, default: Date.now}
+});
+
 
 blogPostSchema.virtual('authorName').get(function() {
   return `${this.author.firstName} ${this.author.lastName}`.trim();

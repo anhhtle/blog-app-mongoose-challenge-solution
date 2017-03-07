@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 
 const {DATABASE_URL, PORT} = require('./config');
-const {BlogPost} = require('./models');
+const {BlogPost, BlogPost2} = require('./models');
 
 const app = express();
 
@@ -19,6 +19,7 @@ app.get('/posts', (req, res) => {
     .find()
     .exec()
     .then(posts => {
+      console.log(posts);
       res.json(posts.map(post => post.apiRepr()));
     })
     .catch(err => {
@@ -124,7 +125,7 @@ let server;
 // this function connects to our database, then starts the server
 function runServer(databaseUrl=DATABASE_URL, port=PORT) {
   return new Promise((resolve, reject) => {
-    mongoose.connect(databaseUrl, err => {
+    mongoose.connect(databaseUrl, (err) => {
       if (err) {
         return reject(err);
       }
